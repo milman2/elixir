@@ -18,6 +18,8 @@ defmodule DemoWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :home
+    #get "/hello", PageController, :hello
+    get "/hello", ExampleController, :hello
   end
 
   # Other scopes may use custom stacks.
