@@ -62,7 +62,7 @@ iex> Example.hello
     - strict comparision
 - Head/Tail : hd/tl
     - pattern matching
-    - cons operator |
+    - **cons operator |**
 - Tuple : {}
 - **Keyword list**
     - Keys must be atoms.
