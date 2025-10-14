@@ -544,3 +544,48 @@ paris_datetime = DateTime.from_naive!(~N[2019-01-01 12:00:00], "Europe/Paris")
 ```
 # IEX Helper
 
+# Error Handling
+- raise/try/rescue/after
+```elixir
+try do
+    raise "Oh no!"
+    raise ArgumentError, message: "the argument value is invliad"
+rescue
+    e in RuntimeError -> IO.puts("An error occurred:" <> e.message)
+after
+    IO.puts "The end!"
+end
+```
+
+```elixir
+defmodule ExampleError do
+  defexception message: "an example error has occurred"
+end
+
+try do
+  raise ExampleError
+rescue
+  e in ExampleError -> e
+end
+```
+
+- throw/catch
+```elixir
+try do
+  for x <- 0..10 do
+    if x == 5, do: throw(x)
+    IO.puts(x)
+  end
+catch
+  x -> "Caught: #{x}"
+end
+```
+
+- exit
+```elixir
+try do
+  exit "oh no!"
+catch
+  :exit, _ -> "exit blocked"
+end
+```
