@@ -1,4 +1,7 @@
-﻿# install Elixir
+﻿# Elixir
+- Erlang virtual machine (BEAM)
+
+# install Elixir
 - elixir-lang.org
 
 ```shell
@@ -14,6 +17,19 @@ elixir -v
 
 # interactive mode
 iex
+```
+
+# Example
+```shell
+mix new example
+cd example
+
+# 프로젝트 빌드 후 iex 실행
+iex -S mix
+
+# .beam 파일 생성
+elixirc lib/hello.ex # Elixir.Hello.beam
+iex> Example.hello
 ```
 
 # [Elixir School](https://elixirschool.com/)
