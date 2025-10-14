@@ -378,19 +378,169 @@ Example.hello("Sean")
 ```shell
 mix new <project-name>
 mix compile
+mix deps.get
+
+MIX_ENV=prod mix compile # Mix.env
 ```
-    
 
+# Sigil : ~<identifier><pair-of-delimiters>
+~C Generates a character list with **no escaping or interpolation**
+~c Generates a character list with **escaping and interpolation**
+~R Generates a regular expression with no escaping or interpolation
+~r Generates a regular expression with escaping and interpolation
+~S Generates a string with no escaping or interpolation
+~s Generates a string with escaping and interpolation
+~W Generates a word list with no escaping or interpolation
+~w Generates a word list with escaping and interpolation
+~N Generates a NaiveDateTime struct
+~U Generates a DateTime struct (since Elixir 1.9.0)
 
-# Sigil
+<...> A pair of pointy brackets
+{...} A pair of curly brackets
+[...] A pair of square brackets
+(...) A pair of parentheses
+|...| A pair of pipes
+/.../ A pair of forward slashes
+"..." A pair of double quotes
+'...' A pair of single quotes
+
+- Regular Expression
+    - Perl Compatible Regular Expression (PCRE)
+- String
+- Word List
+- NaiveDateTime
+- DateTime
+- Creating custom Sigil
+```elixir
+defmodule MySigils do
+  def sigil_p(string, []), do: String.upcase(string)
+end
+
+import MySigils
+~p/elixir school/
+```
+- Multi-character sigil : all characters must be uppercase
 
 # Documentation
+```
+# - For inline documentation.
+@moduledoc - For module-level documentation.
+@doc - For function-level documentation
+```
+- Inline Documentation
+- Documenting Module
+```elixir
+defmodule Greeter do
+  @moduledoc """
+  Provides a function `hello/1` to greet a human
+  """
 
+  def hello(name) do
+    "Hello, " <> name
+  end
+end
+```
+
+```shell
+iex> c("greeter.ex", ".")
+iex> h Greeter
+
+$ iex -S mix
+```
+- Documenting Function : @doc
+    @spec
+- ExDoc 
+
+```shell
+rm -rf deps
+mix deps.get
+mix docs
+```
 # Comprehension
+- Generator
+```elixir
+# List
+list = [1, 2, 3, 4, 5]
+for x <- list, do: x*x
+
+# Keyword List
+for {_key, val} <- [one: 1, two: 2, three: 3], do: val
+
+# Map
+for {k, v} <- %{"a" => "A", "b" => "B"}, do: {k, v}
+
+# Binary
+for <<c <- "hello">>, do: <<c>>
+
+# generators rely on pattern matching
+for {:ok, val} <- [ok: "Hello", error: "Unknown", ok: "World"], do: val
+
+# multiple generators
+list = [1, 2, 3, 4]
+for n <- list, times <- 1..n do
+  String.duplicate("*", times)
+end
+
+for n <- list, times <- 1..n, do: IO.puts "#{n} - #{times}"
+```
+- Filters : guard for comprehension
+```elixir
+import Integer
+for x <- 1..10, is_even(x), do: x
+
+import Integer
+for x <- 1..100,
+  is_even(x),
+  rem(x, 3) == 0, do: x
+```
+- Using :into 
+    - Any structure that implements the **Collectable** protocol.
+```elixir
+for {k, v} <- [one: 1, two: 2, three: 3], into: %{}, do: {k, v}
+for c <- [72, 101, 108, 108, 111], into: "", do: <<c>>
+```
 
 # String
+- String : a sequence of bytes
+```elixir
+string = <<104,101,108,108,111>>
+string <> <<0>>
+```
+- Charlist : **Unicode code point** of a character whereas in a binary, the codepoints are encodes as UTF-8.
+```elixir
+'hełło' # Unicode code point : 322
+"hełło" <> <<0>> # UTF-* : 197, 130
+?Z # get a character’s code point by using ?
+```
+- Grapheme and Codepoint
+```elixir
+string = "\u0061\u0301"
+String.codepoints string
+String.graphemes string
+```
 
 # Date and Time
+```elixir
+Time.utc_now
+t = ~T[19:39:31.056226]
+t.hour
+t.minute
 
+Date.utc_now
+{:ok, date} = Date.new(2020, 12, 12)
+Date.day_of_week date
+Date.leap_year? date
+
+NaiveDateTime.utc_now
+NaiveDateTime.add(~N[2018-10-01 00:00:14], 30)
+
+DateTime.from_naive(~N[2016-05-24 13:26:08.003], "Etc/UTC")
+
+# tzdata package
+# config :elixir, :time_zone_database, Tzdata.TimeZoneDatabase
+paris_datetime = DateTime.from_naive!(~N[2019-01-01 12:00:00], "Europe/Paris")
+{:ok, ny_datetime} = DateTime.shift_zone(paris_datetime, "America/New_York")
+
+```
 # IEX Helper
 
