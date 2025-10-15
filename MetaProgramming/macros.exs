@@ -60,3 +60,37 @@ defmodule Sample do
 end
 
 # Sample.run()
+
+defmodule M do
+  defmacro defkv(kv) do
+    Enum.map(kv, fn {k, v} ->
+      quote do
+        def unquote(k)(), do: unquote(v)
+      end
+    end)
+  end
+end
+
+defmodule M2 do
+  require M
+  M.defkv [foo: 1, bar: 2]
+end
+
+defmodule FooBar do
+  kv = [foo: 1, bar: 2]
+  Enum.each(kv, fn {k, v} ->
+    def unquote(k)(), do: unquote(v)
+  end)
+end
+
+# module attributes (general)
+defmodule M3 do
+  @kv [foo: 1, bar: 2]
+
+  Enum.each(@kv, fn {k, v} ->
+    def unquote(k)(), do: unquote(v)
+  end)
+end
+
+M3.foo()  # => 1
+M3.bar()  # => 2
