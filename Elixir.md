@@ -394,7 +394,8 @@ Example.hello("Sean")
 ```shell
 mix new <project-name>
 mix compile
-mix deps.get
+mix local.hex # install hex package manager
+mix deps.get # install project dependencies
 
 MIX_ENV=prod mix compile # Mix.env
 ```

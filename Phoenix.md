@@ -7,6 +7,9 @@
 ## 설치
 
 ```shell
+# install hex package manager
+mix local.hex
+
 # Phoenix 프로젝트 생성기 설치
 mix archive.install hex phx_new
 
@@ -45,3 +48,10 @@ config :your_app, YourAppWeb.Endpoint,
 ```
 
 ## Huff
+
+# REST API : forum
+```shell
+mix phx.new forum --database sqlite3
+mix ecto.create
+
+```
