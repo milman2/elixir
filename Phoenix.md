@@ -68,4 +68,6 @@ curl -X POST http://localhost:4000/api/posts -H "Content-Type: application/json"
 
 mix phx.gen.json Accounts User users name:string email:string:unique
 mix ecto.migrate
+
+mix ecto.gen.migration add_user_id_to_posts
 ```
