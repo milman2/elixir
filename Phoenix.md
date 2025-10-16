@@ -70,4 +70,11 @@ mix phx.gen.json Accounts User users name:string email:string:unique
 mix ecto.migrate
 
 mix ecto.gen.migration add_user_id_to_posts
+mix ecto.migrate
+
+curl -X POST http://localhost:4000/api/users -H "Content-Type: application/json" -d '{"user": {"name": "Sample User", "email": "sampleuser@example.com"}}'
+curl -X POST http://localhost:4000/api/posts -H "Content-Type: application/json" -d '{"post": {"title": "Sample Title", "body": "Sample body content", "user_id": 1}}'
+curl -X GET http://localhost:4000/api/posts
+curl -X GET http://localhost:4000/api/users/1
 ```
+
