@@ -62,4 +62,9 @@ sudo apt install -y inotify-tools
 # 192.168.50.135:4000
 
 mix phx.gen.json Posts Post posts body:string title:string
+mix ecto.migrate
+
+curl -X POST http://localhost:4000/api/posts -H "Content-Type: application/json" -d '{"post": {"title": "Sample Title", "body": "Sample body content"}}'
+
+
 ```
