@@ -53,5 +53,13 @@ config :your_app, YourAppWeb.Endpoint,
 ```shell
 mix phx.new forum --database sqlite3
 mix ecto.create
+mix phx.server
 
+sudo apt update
+sudo apt install -y inotify-tools
+
+# IP 바인딩 설정할 것!!
+# 192.168.50.135:4000
+
+mix phx.gen.json Posts Post posts body:string title:string
 ```
