@@ -606,3 +606,26 @@ catch
   :exit, _ -> "exit blocked"
 end
 ```
+
+# Process
+- spawn
+- send
+- receive
+
+- GenServer.call/2 -> handle_call/3 # 동기 처리
+- GenServer.cast/2 -> handle_cast/2 # 비동기 처리
+- send/2 -> handle_info/2           # 비동기 처리. 예상치 못한 메시지나 외부 메시지 처리
+
+```elixir
+spawn(fn -> 
+  Process.sleep(3_000)
+  IO.puts("order processed!") 
+end)
+
+v(1) # IEx 에서 n번째 결과를 다시 불러오는 함수
+
+Process.alive?(v(1))
+
+Process.info(self())
+flush
+```
