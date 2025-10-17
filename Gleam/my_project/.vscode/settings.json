@@ -1,0 +1,5 @@
+{
+  "gleam.path": "~/.local/bin/gleam",
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "gleam-lang.gleam-vscode"
+}

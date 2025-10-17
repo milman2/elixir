@@ -18,3 +18,10 @@ cd /home/milman2/elixir/Gleam/my_project && export PATH="$HOME/.local/bin:$PATH"
 
 gleam run
 ```
+
+# VS Code
+```shell
+code --install-extension gleam-lang.gleam-vscode
+
+gleam lsp --help
+```
