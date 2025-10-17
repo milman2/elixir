@@ -608,9 +608,10 @@ end
 ```
 
 # Process
-- spawn
-- send
-- receive
+- spawn/1
+- send2
+- receive/1
+- Process.link/1
 
 - GenServer.call/2 -> handle_call/3 # 동기 처리
 - GenServer.cast/2 -> handle_cast/2 # 비동기 처리
