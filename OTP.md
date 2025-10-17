@@ -27,3 +27,21 @@ OtpCounter.Counter.crash()   # 강제 종료
 # 자동으로 Supervisor가 재시작
 OtpCounter.Counter.get()     # => 0 (초기화됨)
 ```
+
+## ETS(Elang Term Storage)
+## Agent
+## GenServer
+## Task
+```elixir
+{:ok, agent} = Agent.start_link(fn -> [] end)
+Agent.update(agent, fn list -> ["eggs" | list] end)
+Agent.get(agent, fn list -> list end)
+Agent.stop(agent)
+
+{:ok, agent} = Agent.start_link(fn -> [] end)
+Agent.update(agent, fn _list -> 123 end)
+Agent.update(agent, fn content -> %{a: content} end)
+Agent.update(agent, fn content -> [12 | [content]] end)
+Agent.update(agent, fn list -> [:nop | list] end)
+Agent.get(agent, fn content -> content end)
+```
