@@ -45,12 +45,15 @@ gleam add wisp@1 mist@3
 - Client-side Web Framework
 - Elm style architecture(TEA?) : Model -> Update -> View
 
-# Lustre
+# Lustre and lustre_ui
 - UI Component Library
 - cf. React JSX
 
 # Squirrel 
 - SQL
+
+# codec
+- JSON
 
 
 # pokedex example
