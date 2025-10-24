@@ -238,6 +238,24 @@ quote do: [red_sox: :good, yankees: :evil]
 ~c"efg" |> IEx.Info.info() # 'efg' |> IEx.Info.info()
 ```
 
+## use
+- 모듈을 가져오고, 그 모듈이 정의한 매크로를 실행하여 현재 모듈에 코드를 삽입하는 매크로 호출 방식
+```elixir
+defmodule MyFeature do
+  defmacro __using__(_opts) do
+    quote do
+      def hello, do: IO.puts("Hello from MyFeature!")
+    end
+  end
+end
+
+defmodule MyApp do
+  use MyFeature
+end
+
+MyApp.hello()  # 출력: Hello from MyFeature!
+```
+
 # DSL
 - Module
     - @before_compile

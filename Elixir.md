@@ -608,7 +608,7 @@ end
 ```
 
 # Process
-- spawn/1
+- spawn/1, spawn_link, spawn_monitor
 - send2
 - receive/1
 - Process.link/1
@@ -630,3 +630,15 @@ Process.alive?(v(1))
 Process.info(self())
 flush
 ```
+
+# GenServer
+init/1
+handle_call
+handle_cast
+handle_info
+GenServer.start_link
+GetServer.whereis
+:sys.get_state
+
+# Macro
+__use__/1
