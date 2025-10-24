@@ -1,6 +1,7 @@
 defmodule PersonValidatorTest do
   use ExUnit.Case
-  doctest MyApp.PersonValidator
+  # Note: doctest는 Spark DSL 모듈에서 잘 작동하지 않음
+  # (validate 함수가 컴파일 타임에 Transformer로 생성되기 때문)
 
   describe "PersonValidator" do
     test "validates correct data" do

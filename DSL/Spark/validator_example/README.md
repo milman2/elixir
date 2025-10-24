@@ -4,6 +4,13 @@ Spark 공식 문서의 전체 예제를 실제로 작동하도록 구현한 프�
 
 > 공식 문서: https://hexdocs.pm/spark/get-started-with-spark.html
 
+## 🚀 빠른 이해
+
+**Spark가 처음이신가요?**
+1. **`SIMPLE_EXAMPLE.md`** 먼저 읽기 - 비교하며 이해 (5분)
+2. **`UNDERSTANDING_SPARK.md`** 읽기 - 단계별 상세 설명 (10분)
+3. **이 README** 읽기 - 전체 프로젝트 이해 (15분)
+
 ## 🎯 프로젝트 목적
 
 Spark 공식 문서의 Validator DSL 예제를 완전하게 구현하여:
