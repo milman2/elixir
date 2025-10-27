@@ -6,6 +6,7 @@ defmodule MyLibrary.Validator.Verifiers.VerifyRequired do
   """
 
   use Spark.Dsl.Verifier
+  # verify/1
 
   # dsl_state here is a map of the underlying DSL data
   def verify(dsl_state) do

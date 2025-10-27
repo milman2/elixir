@@ -12,9 +12,13 @@ defmodule MyLibrary.Validator.Dsl do
     defstruct [:name, :type, :transform, :check, :__spark_metadata__]
   end
 
+  # Entity
+  # name, target, schema, args, auto_set_fields?, transform, entities, single_entity_keys, identifier
+  # Option Schema
+  # type, required, default, keys, doc, deprecated, private?, hide, as, type_doc, type_spec
   @field %Spark.Dsl.Entity{
     name: :field,
-    args: [:name, :type],
+    args: [:name, :type], # positional arguments
     target: Field,
     describe: "A field that is accepted by the validator",
     schema: [
@@ -39,6 +43,8 @@ defmodule MyLibrary.Validator.Dsl do
     ]
   }
 
+  # Section
+  # name, schema, entities, sections, top_level?, imports, describe
   @fields %Spark.Dsl.Section{
     name: :fields,
     schema: [
