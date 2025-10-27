@@ -100,18 +100,26 @@ mix sparkk.cheat_sheets
 - {:wrap_list, type}
 ## Elixir-Specific Types
 - :mfa, :mod_arg, {:struct, struct_name}, :struct
+- {:mfa_or_fun, arity}
 ## Validation Types
 - {:in choices} / {:one_of, choices}
 - {:or subtypes}
 - {:custom, mod, fun, args}
 ## Spark-Specific Types
 - {:spark_behaviour, behaviour}
+- {:spark_function_behaviour, behaviour, {module, arity}}
 - {:behaviour, behaviour}
 - {:protocol, protocol}
 - {:impl, protocol}
 - {:spark, dsl_module}
+- {:spark_type, module, builtin_function}
 ## Other Types
 - {:tagged_tuple, tag, inner_type}
 - :literal / {:literal, value}
 - :quoted
 
+# Option System - ValidationError 
+- message
+- key
+- value
+- keys_path
