@@ -1,3 +1,4 @@
+# Transformer : Spark.Dsl.Transformer
 defmodule MyLibrary.Validator.Transformers.AddId do
   @moduledoc """
   Transformer that automatically adds an :id field to all validators

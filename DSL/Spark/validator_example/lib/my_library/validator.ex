@@ -1,3 +1,4 @@
+# DSL Module : Spark.Dsl
 defmodule MyLibrary.Validator do
   @moduledoc """
   A DSL for defining data validators using Spark
@@ -96,3 +97,20 @@ defmodule MyLibrary.Validator do
 
   defp transform(_, value), do: value
 end
+
+# 방법 1 : Extension API 사용
+# Get all field entities
+# fields = Spark.Dsl.Extension.get_entities(MyApp.PersonValidator, :fields)
+
+# Get a specific option
+# required_fields = Spark.Dsl.Extension.get_opt(MyApp.PersonValidator, [:fields], :required)
+
+# 방법 2 : InfoGenerator 사용
+# Get all field entities
+# fields = MyLibrary.Validator.Info.fields(MyApp.PersonValidator)
+
+# Get required fields with error handling
+# MyLibrary.Validator.Info.fields_required(MyApp.PersonValidator)
+
+# Get required fields without error handling
+# required_fields = MyLibrary.Validator.Info.fields_required!(MyApp.PersonValidator)

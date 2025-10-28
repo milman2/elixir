@@ -1,3 +1,4 @@
+# Verifier : Spark.Dsl.Verifier
 defmodule MyLibrary.Validator.Verifiers.VerifyRequired do
   @moduledoc """
   Verifier that ensures all required fields are also defined in the fields section

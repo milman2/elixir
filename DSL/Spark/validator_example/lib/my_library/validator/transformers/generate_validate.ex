@@ -1,3 +1,4 @@
+# Transformer : Spark.Dsl.Transformer
 defmodule MyLibrary.Validator.Transformers.GenerateValidate do
   @moduledoc """
   Transformer that generates a validate/1 function for each validator

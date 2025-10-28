@@ -1,3 +1,4 @@
+# DSL Extension : Spark.Dsl.Extension
 defmodule MyLibrary.Validator.Dsl do
   @moduledoc """
   Spark DSL Extension for defining validators
@@ -12,7 +13,7 @@ defmodule MyLibrary.Validator.Dsl do
     defstruct [:name, :type, :transform, :check, :__spark_metadata__]
   end
 
-  # Entity
+  # Entity : field
   # name, target, schema, args, auto_set_fields?, transform, entities, single_entity_keys, identifier
   # Option Schema
   # type, required, default, keys, doc, deprecated, private?, hide, as, type_doc, type_spec
@@ -43,7 +44,7 @@ defmodule MyLibrary.Validator.Dsl do
     ]
   }
 
-  # Section
+  # Section : fields
   # name, schema, entities, sections, top_level?, imports, describe
   @fields %Spark.Dsl.Section{
     name: :fields,

@@ -123,3 +123,27 @@ mix sparkk.cheat_sheets
 - key
 - value
 - keys_path
+
+# Documentation and Tooling
+## Spark.InfoGenerator
+- Config Functions
+    - section_option(dsl) -> {:ok, value} or :error
+    - section_option!(dsl) -> value or raises an error
+    - section_option?(dsl)
+- Options Functions
+    - section_options(dsl) -> %{option_name => value, ...}
+- Entity Functions
+    - section_path(dsl) -> [entity, ...]
+## Spark.CheatSheet
+- cheat_sheet/1
+- section_cheat_sheet/2
+- entity_cheat_sheet/2
+- doc_index/3
+## Formatter
+## IDE Integration
+## Mix Tasks
+- mix spark.install
+- mix spark.formatter --extensions Extension1,Extension2 [--check]
+- mix spark.cheat_sheets --extensions Extension1,Extension2
+- mix spark.cheat_sheets_in_search --extensions Extension1,Extension2 [--strip_prefix Prefix] [--check] # deprecated -> Spark.Docs.search_data_for/1
+- mix spark.replace_doc_links
