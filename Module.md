@@ -73,3 +73,12 @@ List.flatten([1, [2], 3])
 :"Elixir.List".flatten([1, [2], 3])
 :lists.flatten([1, [2], 3])
 ```
+
+# Module attribues
+- as module and function annotations
+    - @moduledoc
+    - @doc
+    - @spec
+    - @behaviour
+- as temporary module storage to be used during compilation
+- as compile-time constants
