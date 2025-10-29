@@ -18,8 +18,6 @@ defmodule Product do
   #require DiscountExt
   #DiscountExt.extend()
   use DiscountExt
-
-
 end
 
 # c "discount_ext.exs"
