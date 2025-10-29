@@ -1,0 +1,23 @@
+﻿# Erlang 표준 라이브러리 모듈
+- :lists
+- :string
+- :maps
+- :sets
+- :queue
+- :array
+- :dict
+- :proplists
+- :file
+- :io
+- :gen_server
+- :timer
+- :math
+- :crypto
+- :random
+- :calendar
+- :unicode
+- :regexp
+## OTP
+- :supervisor
+- :application
+- :gen_stream
