@@ -24,3 +24,16 @@ for i <- [:a, :b, :c], j <- [1, 2], do:  {i, j}
 pixels = <<213, 45, 132, 64, 76, 32, 76, 0, 0, 234, 32, 15>>
 for <<r::8, g::8, b::8 <- pixels>>, do: {r, g, b}
 ```
+
+# The :into option
+```elixir
+for <<c <- " hello world ">>, c != ?\s, into: "", do: <<c>>
+for {key, val} <- %{"a" => 1, "b" => 2}, into: %{}, do: {key, val * val}
+
+stream = IO.stream(:stdio, :line)
+for line <- stream, into: stream do
+  String.upcase(line) <> "\n"
+end
+```
+
+# :reduce, :uniq 
