@@ -8,24 +8,43 @@ defmodule ShopWeb.Router do
     plug :put_root_layout, html: {ShopWeb.Layouts, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug ShopWeb.Plugs.SetConsole, "pc"
   end
 
   pipeline :api do
     plug :accepts, ["json"]
   end
 
+  pipeline :auth do
+    plug Plug.EnsureAuthenticated
+  end
+
   scope "/", ShopWeb do
     pipe_through :browser
+
+    get "/", PageController, :home
+    #get "/products", ProductController, :index
+    #get "/products/:id", ProductController, :show
+    resources "/products", ProductController, only: [:index, :show]
+    resources "/users", UserController do
+      resources "/posts", PostController
+    end
+  end
+
+  # Other scopes may use custom stacks.
+  scope "/api", ShopWeb do
+    pipe_through :api
 
     get "/", PageController, :home
     get "/products", ProductController, :index
     get "/products/:id", ProductController, :show
   end
 
-  # Other scopes may use custom stacks.
-  # scope "/api", ShopWeb do
-  #   pipe_through :api
-  # end
+  scope "/dashboard", ShopWeb do
+    pipe_through [:browser, :auth]
+
+    get "/", DashboardController, :index
+  end
 
   # Enable LiveDashboard and Swoosh mailbox preview in development
   if Application.compile_env(:shop, :dev_routes) do

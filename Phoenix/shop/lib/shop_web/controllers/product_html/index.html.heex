@@ -1,2 +1,9 @@
 ﻿
 <h1>This is the product listing Page</h1>
+<p :if={@promo}>Promo code applied</p>
+
+<hr class="my-4" />
+
+<a href={~p"/?#{[console: "xbox", admin: true]}"}>Go back to home page</a>
+
+<p>This is the full URL: <%= url(~p"/products") %></p>

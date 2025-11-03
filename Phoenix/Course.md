@@ -18,3 +18,7 @@ mix phx.server
 
 - /lib/shop/ # business domain (model)
 - /lib/shop_web/ # controllers and views
+
+```shell
+mix phx.routes
+```
