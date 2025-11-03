@@ -16,6 +16,4 @@ defmodule ShopWeb.ProductJSON do
       data: products
     }
   end
-
-
 end

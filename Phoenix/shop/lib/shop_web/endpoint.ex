@@ -60,6 +60,6 @@ defmodule ShopWeb.Endpoint do
   end
 
   def check_promo_code(%Plug.Conn{} = conn, _opts) do
-      assign(conn, :promo, false)
+    assign(conn, :promo, false)
   end
 end

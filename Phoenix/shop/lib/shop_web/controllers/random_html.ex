@@ -9,5 +9,5 @@ defmodule ShopWeb.RandomHTML do
     """
   end
 
-  #embed_templates "random_html/*"
+  # embed_templates "random_html/*"
 end

@@ -12,9 +12,10 @@ defmodule ShopWeb.ProductHTML do
   embed_templates "product_html/*"
 
   attr :name, :string, required: true
+
   def product(assigns) do
     ~H"""
-    <p>Game: <%= @name %></p>
+    <p>Game: {@name}</p>
     """
   end
 end

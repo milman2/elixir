@@ -6,6 +6,6 @@
 
 <a href={~p"/?#{[console: "xbox", admin: true]}"}>Go back to home page</a>
 
-<p>This is the full URL: <%= url(~p"/products") %></p>
+<p>This is the full URL: {url(~p"/products")}</p>
 
 <.product :for={product <- @products} name={product.name} />
