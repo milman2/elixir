@@ -2,7 +2,7 @@ defmodule ShopWeb.Router do
   use ShopWeb, :router
 
   pipeline :browser do
-    plug :accepts, ["html"]
+    plug :accepts, ["html", "json"]
     plug :fetch_session
     plug :fetch_live_flash
     plug :put_root_layout, html: {ShopWeb.Layouts, :root}
@@ -23,12 +23,13 @@ defmodule ShopWeb.Router do
     pipe_through :browser
 
     get "/", PageController, :home
-    #get "/products", ProductController, :index
-    #get "/products/:id", ProductController, :show
-    resources "/products", ProductController, only: [:index, :show]
+    get "/products", ProductController, :index
+    get "/products/:id", ProductController, :show
+    #resources "/products", ProductController, only: [:index, :show]
     resources "/users", UserController do
       resources "/posts", PostController
     end
+    get "/random", RandomController, :random
   end
 
   # Other scopes may use custom stacks.
