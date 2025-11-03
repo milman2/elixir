@@ -22,3 +22,10 @@ mix phx.server
 ```shell
 mix phx.routes
 ```
+
+# Ecto
+```shell
+mix phx.gen.schema Product products name slug:unique console:enum:pc:xbox:nintendo:playstation 
+mix ecto.migrate
+mix ecto.drop
+```
