@@ -23,7 +23,7 @@ defmodule ShopWeb.ProductController do
     |> render(:show)
   end
 
-  def random(conn, parans) do
+  def random(conn, params) do
     # text(conn, "This si some text")
     # html(conn, "<html><body><h1>This is a random product</h1></body></html>")
     # json(conn, %{message: "This is a random product"})
