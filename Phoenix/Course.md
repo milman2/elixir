@@ -29,3 +29,17 @@ mix phx.gen.schema Product products name slug:unique console:enum:pc:xbox:ninten
 mix ecto.migrate
 mix ecto.drop
 ```
+
+```shell
+iex -S mix phx.server
+
+alias Shop.Repo
+alias Shop.Product
+
+product = %Product{name: "Overwahtch 2", slug: "overwatch-2", console: :pc}
+Repo.all(Product)
+Repo.insert(product)
+
+changeset = Product.changeset(%Product{}, %{name: "Diablo 4", console: "xbox"})
+Repo.insert(changeset)
+```

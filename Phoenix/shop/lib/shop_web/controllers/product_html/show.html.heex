@@ -1,6 +1,8 @@
-﻿<h1>The product id is: <%= @product.id %></h1>
+﻿<h1>ID: {@product.id}</h1>
 <h1>Product name: {@product.name}</h1>
 
-<.product :if={@product} name={@product.name} />
+<.product :if={@product} product={@product} />
 
 <.button>Click me</.button>
+
+<p><.link navigate={~p"/products"}>&lt;-- Back to products listing</.link></p>

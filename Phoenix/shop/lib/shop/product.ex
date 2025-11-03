@@ -14,7 +14,7 @@ defmodule Shop.Product do
   def changeset(product, attrs) do
     product
     |> cast(attrs, [:name, :slug, :console])
-    |> validate_required([:name, :slug, :console])
+    |> validate_required([:name, :console])
     |> validate_length(:name, min: 3)
     |> format_name()
     |> generate_slug()
