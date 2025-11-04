@@ -50,4 +50,9 @@ mix phx.gen.context Consoles Console consoles name:string price:integer
 mix ecto.migrate # mix ecto.rollback
 
 mix phx.gen.html Promotions Promotion promotions name:string code:string:unique expires_at:utc_datetime
+mix ecto.migrate
+
+mix phx.gen.json Promotions Promotion promotions name:string code:string:unique
+mix ecto.migrate
+mix phx.routes | grep promotion
 ```

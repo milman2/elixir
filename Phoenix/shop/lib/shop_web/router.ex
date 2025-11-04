@@ -42,6 +42,7 @@ defmodule ShopWeb.Router do
     #get "/products", ProductController, :index
     #get "/products/:id", ProductController, :show
 
+    resources "/promotions", PromotionController, except: [:new, :edit]
   end
 
   scope "/dashboard", ShopWeb do
