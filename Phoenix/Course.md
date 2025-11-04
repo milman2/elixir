@@ -43,3 +43,11 @@ Repo.insert(product)
 changeset = Product.changeset(%Product{}, %{name: "Diablo 4", console: "xbox"})
 Repo.insert(changeset)
 ```
+
+# Mix Tasks
+```shell
+mix phx.gen.context Consoles Console consoles name:string price:integer
+mix ecto.migrate # mix ecto.rollback
+
+mix phx.gen.html Promotions Promotion promotions name:string code:string:unique expires_at:utc_datetime
+```

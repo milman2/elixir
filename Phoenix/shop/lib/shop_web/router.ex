@@ -37,9 +37,11 @@ defmodule ShopWeb.Router do
   scope "/api", ShopWeb do
     pipe_through :api
 
-    get "/", PageController, :home
-    get "/products", ProductController, :index
-    get "/products/:id", ProductController, :show
+    get "/products", ApiController, :index
+    #get "/", PageController, :home
+    #get "/products", ProductController, :index
+    #get "/products/:id", ProductController, :show
+
   end
 
   scope "/dashboard", ShopWeb do
