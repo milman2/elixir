@@ -55,4 +55,6 @@ mix ecto.migrate
 mix phx.gen.json Promotions Promotion promotions name:string code:string:unique
 mix ecto.migrate
 mix phx.routes | grep promotion
+
+mix phx.gen.auth Accounts User users
 ```
