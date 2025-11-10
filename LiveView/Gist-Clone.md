@@ -15,4 +15,10 @@ psql -h localhost -p 5432 -U postgres -d elixir_gist_dev
 ```shell
 mix phx.new elixir_gist --no-install --binary-id
 cd elixir_gist
+
+mix deps.get
+mix phx.gen.auth Accounts User users 
+mix deps.get
+mix ecto.setup
+mix phx.server
 ```
