@@ -11,7 +11,7 @@ sudo apt install postgresql-client
 psql -h localhost -p 5432 -U postgres -d elixir_gist_dev
 ```
 
-# setting up 
+# Setting up and User Authentication
 ```shell
 mix phx.new elixir_gist --no-install --binary-id
 cd elixir_gist
@@ -20,5 +20,15 @@ mix deps.get
 mix phx.gen.auth Accounts User users 
 mix deps.get
 mix ecto.setup
-mix phx.server
+mix phx.server # http://localhost:4000, http://192.168.50.135:4000
+```
+
+# Generating Our Schemas
+- user_id가 2개가 생성되는 현상 -> 명령 수정이 필요한가?
+```shell
+mix phx.gen.context Gists Gist gists user_id:references:users name:string description:text markup_text:text 
+mix phx.gen.context Gists SavedGist saved_gists user_id:references:users gist_id:references:gists 
+mix phx.gen.context Comments Comment comments user_id:references:users gist_id:references:gists markup_text:text
+
+mix ecto.migrate
 ```
