@@ -20,7 +20,7 @@ defmodule ElixirGistWeb.Router do
   scope "/", ElixirGistWeb do
     pipe_through :browser
 
-    get "/", PageController, :home
+    get "/", PageController, :home # PageController.home/2 함수를 호출
   end
 
   # Other scopes may use custom stacks.
@@ -64,7 +64,7 @@ defmodule ElixirGistWeb.Router do
 
     live_session :current_user,
       on_mount: [{ElixirGistWeb.UserAuth, :mount_current_scope}] do
-      live "/users/register", UserLive.Registration, :new
+      live "/users/register", UserLive.Registration, :new # :new LiveView액션 이름 @live_action 변수에 저장(mount/3 함수 호출 전)
       live "/users/log-in", UserLive.Login, :new
       live "/users/log-in/:token", UserLive.Confirmation, :new
     end

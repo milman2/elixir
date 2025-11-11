@@ -130,3 +130,10 @@ mix phx.gen.live Blog Post posts title:string body:text
 - Phoenix.Component.assign/3
 - socket.assigns.name
 - @name
+
+## handle_params/3
+- URL 기반 상태 관리
+- Live navigation 대응
+  - live_patch/2
+  - push_patch/2
+- 공유 가능한 상태
