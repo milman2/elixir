@@ -2,13 +2,18 @@
   <div class="flex items-center justify-center">
     <h1 class="font-brand font-bold text-3xl text-black">Create a new Gist</h1>
   </div>
-  <.form for={@form} phx-submit="create">
+  <.form for={@form} phx-submit="create" phx-change="validate">
     <div class="justify center px-28 w-full space-y-4 mb-10">
-      <.input field={@form[:description]} placeholder="Gist Description..." autocomplete="off" />
+      <.input field={@form[:description]} placeholder="Gist Description..." autocomplete="off" phx-debounce="blur"/>
       <div>
         <div class="flex p-2 items-center rounded-t-md border">
           <div class="w-[300px] mb-2">
-              <.input field={@form[:name]} placeholder="Filename including extension..." autocomplete="off" />
+              <.input 
+              field={@form[:name]} 
+              placeholder="Filename including extension..." 
+              autocomplete="off" 
+              phx-debounce="blur"
+              />
           </div>
         </div>
         <.input 
@@ -19,10 +24,11 @@
           spellcheck="false" 
           autocomplete="off"
           rows="20"
+          phx-debounce="blur"
         />
       </div>
       <div class="flex justify-end">
-        <.button>Create gist</.button>
+        <.button phx-disable-with="Creating gist...">Create gist</.button>
       </div>
     </div>
   </.form>
