@@ -11,6 +11,10 @@ defmodule ElixirGist.Accounts.User do
     field :confirmed_at, :utc_datetime
     field :authenticated_at, :utc_datetime, virtual: true
 
+    has_many :gists, ElixirGist.Gists.Gist
+    #has_many :saved_gists, ElixirGist.Gists.SavedGist
+    #has_many :comments, ElixirGist.Comments.Comment
+
     timestamps(type: :utc_datetime)
   end
 
