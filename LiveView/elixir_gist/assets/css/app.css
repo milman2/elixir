@@ -116,7 +116,7 @@
   }
 
   .line-numbers {
-    @apply border border-white font-mono font-normal text-xs h-[300px] w-[54px] text-right overflow-hidden resize-none;
+    @apply border border-white font-mono font-normal text-xs h-[300px] w-[54px] text-center overflow-hidden resize-none;
     border-right: none;
     border-top: none;
   }
