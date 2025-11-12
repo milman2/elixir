@@ -1,16 +1,10 @@
 defmodule ElixirGistWeb.CreateGistLive do
   use ElixirGistWeb, :live_view
 
-  def mount(_params, _session, socket) do
-    {:ok, socket}
-  end
+  alias ElixirGist.Gists.Gist
 
-  #@impl true
-  # def render(assigns) do
-  #   ~H"""
-  #   <div>
-  #     <h1>Create Gist</h1>
-  #   </div>
-  #   """
-  #end
+  def mount(_params, _session, socket) do
+    changeset = Gist.changeset(%Gist{}, %{}, socket.assigns.current_scope)
+    {:ok, assign(socket, form: to_form(changeset))}
+  end
 end

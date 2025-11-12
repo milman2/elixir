@@ -1,5 +1,29 @@
 ﻿<Layouts.app flash={@flash} current_scope={@current_scope}>
   <div class="flex items-center justify-center">
-    <h1 class="font-brand font-bold text-3xl text-white">Create a new Gist</h1>
+    <h1 class="font-brand font-bold text-3xl text-black">Create a new Gist</h1>
   </div>
-</Layouts.app>
+  <.form for={@form}>
+    <div class="justify center px-28 w-full space-y-4 mb-10">
+      <.input field={@form[:description]} placeholder="Gist Description..." autocomplete="off" />
+      <div>
+        <div class="flex p-2 items-center rounded-t-md border">
+          <div class="w-[300px] mb-2">
+              <.input field={@form[:name]} placeholder="Filename including extension..." autocomplete="off" />
+          </div>
+        </div>
+        <.input 
+          field={@form[:markup_text]} 
+          type="textarea" 
+          class="w-full rounded-b-md font-mono" 
+          placeholder="Insert code..." 
+          spellcheck="false" 
+          autocomplete="off"
+          rows="20"
+        />
+      </div>
+      <div class="flex justify-end">
+        <.button>Create gist</.button>
+      </div>
+    </div>
+  </.form>
+</Layouts.app>  
