@@ -103,3 +103,25 @@
 [data-phx-session], [data-phx-teleported-src] { display: contents }
 
 /* This file is for your main application CSS */
+
+@layer components {
+  .text-area {
+    @apply text-black text-xs border border-white h-[300px] resize-none;
+    border-top: none;
+    border-left: none;
+  }
+
+  .text-area:focus {
+    @apply focus:outline-none focus:border-white focus:ring-0;
+  }
+
+  .line-numbers {
+    @apply border border-white font-mono font-normal text-xs h-[300px] w-[54px] text-right overflow-hidden resize-none;
+    border-right: none;
+    border-top: none;
+  }
+
+  .line-numbers:focus {
+    @apply focus:outline-none focus:border-white focus:ring-0;
+  }
+}

@@ -26,10 +26,32 @@ import {hooks as colocatedHooks} from "phoenix-colocated/elixir_gist"
 import topbar from "../vendor/topbar"
 
 const csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content")
+
+let Hooks = {}
+Hooks.UpdateLineNumbers = {
+  mounted() {
+    this.el.addEventListener("input", () => {
+      this.updateLineNumbers()
+    })
+
+    this.updateLineNumbers()
+  },
+  updateLineNumbers() {
+    const lineNumberText = document.querySelector("#line-numbers")
+    if (!lineNumberText) return
+
+    const lines = this.el.value.split("\n")
+
+    const numbers = lines.map((_, index) => index + 1).join("\n") + "\n"
+
+    lineNumberText.value = numbers
+  },
+}
+
 const liveSocket = new LiveSocket("/live", Socket, {
   longPollFallbackMs: 2500,
   params: {_csrf_token: csrfToken},
-  hooks: {...colocatedHooks},
+  hooks: {...colocatedHooks, ...Hooks},
 })
 
 // Show progress bar on live navigation and form submits
