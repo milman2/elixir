@@ -1,0 +1,44 @@
+{
+  // .heex 파일을 Phoenix HTML 템플릿으로 인식
+  "files.associations": {
+    "*.heex": "phoenix-heex"
+  },
+  
+  // HTML 자동 닫기 태그 활성화
+  "html.autoClosingTags": true,
+  
+  // Emmet에서 .heex 파일 지원
+  "emmet.includeLanguages": {
+    "phoenix-heex": "html",
+    "elixir": "html"
+  },
+  
+  // 자동 닫기 태그 설정
+  "auto-close-tag.activationOnLanguage": [
+    "xml",
+    "php",
+    "html",
+    "javascript",
+    "typescript",
+    "javascriptreact",
+    "typescriptreact",
+    "plaintext",
+    "markdown",
+    "vue",
+    "liquid",
+    "erb",
+    "lang-cfml",
+    "cfml",
+    "HTML (Eex)",
+    "phoenix-heex"
+  ],
+  
+  // 자동 닫기 태그에서 제외할 태그들 (self-closing 태그)
+  "auto-close-tag.SublimeText3Mode": true,
+  "auto-close-tag.enableAutoCloseSelfClosingTag": true,
+  
+  // Elixir 및 Phoenix 관련 설정
+  "emmet.triggerExpansionOnTab": true,
+  "emmet.showExpandedAbbreviation": "always"
+}
+
