@@ -32,3 +32,8 @@ mix phx.gen.context Comments Comment comments user_id:references:users gist_id:r
 
 mix ecto.migrate
 ```
+
+# 
+```shell
+npm install highlight.js --prefix assets
+```

@@ -18,7 +18,7 @@ defmodule ElixirGistWeb.CreateGistLive do
   # SELECT * FROM gists;
   def handle_event("create", %{"gist" => params}, socket) do
     case Gists.create_gist(socket.assigns.current_scope, params) do
-      {:ok, _gist} ->
+      {:ok, gist} ->
         socket = push_event(socket, "clear-textareas", %{})
         # 새로운 빈 changeset 생성 (change_gist 대신)
         changeset = Gist.changeset(%Gist{}, %{}, socket.assigns.current_scope)
@@ -28,7 +28,8 @@ defmodule ElixirGistWeb.CreateGistLive do
           |> put_flash(:info, "Gist created successfully!")
           |> assign(form: to_form(changeset))
 
-        {:noreply, socket}
+        #{:noreply, socket}
+        {:noreply, push_navigate(socket, to: ~p"/gist?#{[id: gist.id]}")}
 
       {:error, %Ecto.Changeset{} = changeset} ->
         {:noreply, assign(socket, form: to_form(changeset))}
