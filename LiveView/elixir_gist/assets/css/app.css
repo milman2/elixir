@@ -100,11 +100,81 @@
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
 /* Make LiveView wrapper divs transparent for layout */
-[data-phx-session], [data-phx-teleported-src] { display: contents }
+[data-phx-session],
+[data-phx-teleported-src] {
+  display: contents
+}
+
+/* Custom theme configuration */
+@theme {
+  /* Custom Colors */
+  --color-emSyntax: #0E1116;
+  --color-emDark-dark: #010101;
+  --color-emDark: #3C3B3B;
+  --color-emDark-light: #828282;
+  --color-emPurple-dark: #631A61;
+  --color-emPurple: #A834A5;
+  --color-emPurple-light: #E88FE5;
+  --color-emLavender-dark: #8C52FF;
+  --color-emLavender: #9D74EE;
+  --color-emLavender-light: #BC9AFF;
+
+  /* Custom Font Families */
+  --font-brand: WorkSans, sans-serif;
+
+  /* Custom Font Weights */
+  --font-regular: 400;
+  --font-bold: 700;
+}
 
 /* This file is for your main application CSS */
+@font-face {
+  font-family: "WorkSans";
+  src: url("/fonts/WorkSans-Regular.ttf");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "WorkSans";
+  src: url("/fonts/WorkSans-Bold.ttf");
+  font-weight: bold;
+  font-style: normal;
+}
+
 
 @layer components {
+  .em-gradient {
+    background-image: linear-gradient(to bottom, #631A61, #551653, #340E33, #010101);
+    height: 225px;
+  }
+
+  .dropdown-menu-arrow::before {
+    content: "";
+    position: absolute;
+    top: -5px;
+    left: calc(95% - 12px);
+    border-width: 0 5px 5px 5px;
+    border-style: solid;
+    border-color: transparent transparent white transparent
+  }
+
+  .menu-item {
+    @apply block px-4 py-2 text-sm text-white font-brand font-regular
+  }
+
+  .menu-item:hover {
+    @apply hover:text-emDark-light
+  }
+
+  form input[type="text"], input[type="email"], input[type="password"] {
+    @apply bg-emDark-dark font-brand font-regular text-white text-xs border border-white
+  }
+
+  form input[type="text"], input[type="email"], input[type="password"]:focus {
+    @apply focus:outline-none focus:border-emLavender focus:ring-0
+  }
+
   .text-area {
     @apply text-black text-xs border border-white h-[300px] resize-none;
     border-top: none;
@@ -139,5 +209,40 @@
 
   .syntax-numbers:focus {
     @apply focus:outline-none focus:border-white focus:ring-0;
+  }
+
+  .create_button {
+    @apply bg-emPurple border border-white font-brand font-regular text-black text-base
+  }
+
+  .create_button:hover {
+    @apply hover:bg-emPurple-dark text-emDark-light border-emDark-light
+  }
+
+  .round-image-padding {
+    border-radius: 50%;
+    border: 1.5px solid #FFFFFF;
+    padding: 4px;
+  }
+
+  .img-down-arrow::after {
+    content: "";
+    position: absolute;
+    right: -10px;
+    top: 45%;
+    transform: translateY(-50%);
+    border-width: 3px 3px 0 3px;
+    border-color: white transparent transparent transparent;
+    border-style: solid;
+  }
+
+  .interactive-img-btn img:hover {
+    filter: brightness(80%);
+    /* makes the image 20% darker */
+  }
+
+  .interactive-img-btn img:active {
+    transform: scale(1.1);
+    /* increases the size of the image by 10% */
   }
 }
