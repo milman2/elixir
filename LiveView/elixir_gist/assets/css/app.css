@@ -186,7 +186,7 @@
   }
 
   .line-numbers {
-    @apply border border-white font-mono font-normal text-xs h-[300px] w-[54px] text-center overflow-hidden resize-none;
+    @apply border border-white font-brand font-regular text-xs text-emDark-light bg-emDark-dark h-[300px] w-[54px] text-center overflow-hidden resize-none;
     border-right: none;
     border-top: none;
   }
@@ -196,13 +196,13 @@
   }
 
   .syntax-area {
-    @apply bg-emSyntax border border-white h-auto;
+    @apply bg-emSyntax border text-xs border-white h-auto;
     border-top: none;
     border-left: none;
   }
 
   .syntax-numbers {
-    @apply border border-white font-brand py-[28px] text-xs text-emDark-light bg-emSyntax h-auto w-[54px] text-right overflow-hidden resize-none;
+    @apply border border-white font-brand py-[12px] text-xs text-emDark-light bg-emSyntax h-auto w-[54px] text-right overflow-hidden resize-none;
     border-right: none;
     border-top: none;
   }

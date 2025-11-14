@@ -29,6 +29,17 @@ import topbar from "../vendor/topbar"
 
 const csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content")
 
+function updateLineNumbers(value) {
+  const lineNumberText = document.querySelector("#line-numbers")
+  if (!lineNumberText) return
+
+  const lines = value.split("\n")
+
+  const numbers = lines.map((_, index) => index + 1).join("\n") + "\n"
+
+  lineNumberText.value = numbers
+};
+
 let Hooks = {}
 Hooks.HighlightJS = {
   mounted() {
@@ -37,7 +48,9 @@ Hooks.HighlightJS = {
     if (name && codeBlock) {
       codeBlock.className = codeBlock.className.replace(/language-\S+/g, "");
       codeBlock.classList.add(`language-${this.getSyntaxType(name)}`);
-      hljs.highlightElement(codeBlock);
+      trimmed = this.trimCodeBlock(codeBlock)
+      hljs.highlightElement(trimmed);
+      updateLineNumbers(trimmed.textContent)
     }
   },
   getSyntaxType(name) {
@@ -56,7 +69,16 @@ Hooks.HighlightJS = {
       default:
         return "elixir";
     }
-  }
+  },
+  trimCodeBlock(codeBlock) {
+    const lines = codeBlock.textContent.split("\n")
+    if (lines.length > 2) {
+      lines.shift()
+      lines.pop()
+    }
+    codeBlock.textContent = lines.join("\n")
+    return codeBlock
+  },
 }
 
 Hooks.UpdateLineNumbers = {
@@ -64,7 +86,7 @@ Hooks.UpdateLineNumbers = {
     const lineNumberText = document.querySelector("#line-numbers")
 
     this.el.addEventListener("input", () => {
-      this.updateLineNumbers()
+      updateLineNumbers(this.el.value)
     })
 
     this.el.addEventListener("scroll", () => {
@@ -86,22 +108,13 @@ Hooks.UpdateLineNumbers = {
       lineNumberText.value = "1\n"
     })
 
-    this.updateLineNumbers()
+    updateLineNumbers(this.el.value)
   },
   updated() {
   },
   destroyed() {    
   },
-  updateLineNumbers() {
-    const lineNumberText = document.querySelector("#line-numbers")
-    if (!lineNumberText) return
 
-    const lines = this.el.value.split("\n")
-
-    const numbers = lines.map((_, index) => index + 1).join("\n") + "\n"
-
-    lineNumberText.value = numbers
-  },
 }
 
 const liveSocket = new LiveSocket("/live", Socket, {
