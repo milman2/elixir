@@ -120,13 +120,14 @@ defmodule ElixirGist.Gists do
       {:error, %Ecto.Changeset{}}
 
   """
-  def delete_gist(%Scope{} = scope, %Gist{} = gist) do
-    true = gist.user_id == scope.user.id
-
-    with {:ok, gist = %Gist{}} <-
-           Repo.delete(gist) do
+  def delete_gist(%Scope{} = scope, gist_id) do
+    gist = Repo.get!(Gist, gist_id)
+    if gist.user_id == scope.user.id do
+      Repo.delete(gist)
       broadcast_gist(scope, {:deleted, gist})
       {:ok, gist}
+    else
+      {:error, :unauthorized}
     end
   end
 
