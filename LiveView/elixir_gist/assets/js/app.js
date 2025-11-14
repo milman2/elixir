@@ -17,6 +17,8 @@
 // If you have dependencies that try to import CSS, esbuild will generate a separate `app.css` file.
 // To load it, simply add a second `<link>` to your `root.html.heex` file.
 
+import hljs from "highlight.js"
+
 // Include phoenix_html to handle method=PUT/DELETE in forms and buttons.
 import "phoenix_html"
 // Establish Phoenix Socket and LiveView configuration.
@@ -28,6 +30,35 @@ import topbar from "../vendor/topbar"
 const csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content")
 
 let Hooks = {}
+Hooks.HighlightJS = {
+  mounted() {
+    let name = this.el.getAttribute("data-name");
+    let codeBlock = this.el.querySelector("pre code");
+    if (name && codeBlock) {
+      codeBlock.className = codeBlock.className.replace(/language-\S+/g, "");
+      codeBlock.classList.add(`language-${this.getSyntaxType(name)}`);
+      hljs.highlightElement(codeBlock);
+    }
+  },
+  getSyntaxType(name) {
+    let extension = name.split(".").pop();
+    switch (extension) {
+      case "txt":
+        return "text";
+      case "json":
+        return "json";
+      case "html":
+        return "html";
+      case "heex":
+        return "html";
+      case "js":
+        return "javascript";
+      default:
+        return "elixir";
+    }
+  }
+}
+
 Hooks.UpdateLineNumbers = {
   mounted() {
     const lineNumberText = document.querySelector("#line-numbers")
