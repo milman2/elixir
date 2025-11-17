@@ -1,0 +1,12 @@
+﻿<div class="em-gradient flex items-center justify-center">
+  <h1 class="font-brand font-bold text-3xl text-white">
+    All Gists
+  </h1>
+</div>
+
+<div class="text-white">
+<%= for gist <- @gists do %>
+  <.gist current_scope={@current_scope} gist={gist} />
+  <hr/>
+<% end %>
+</div>

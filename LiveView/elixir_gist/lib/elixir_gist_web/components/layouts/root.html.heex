@@ -33,7 +33,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.11.0/styles/github-dark.min.css" />
   </head>
   <body class="bg-emDark-dark">
-    <ul class="menu menu-horizontal w-full relative z-10 flex items-center gap-4 px-4 sm:px-6 lg:px-8 justify-end">
+    <.link class="mt-2 mr-2 text-white text-[1rem] font-brand font-bold hover:text-emDark-light" href={~p"/all"}>All Gists</.link>
+    <ul class="menu menu-horizontal w-full relative z-10 flex items-center gap-4 px-4 sm:px-6 lg:px-8 justify-end text-white">
       <%= if @current_scope do %>
         <li>
           {@current_scope.user.email}
