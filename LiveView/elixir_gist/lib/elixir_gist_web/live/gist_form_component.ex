@@ -67,7 +67,11 @@ defmodule ElixirGistWeb.GistFormComponent do
             </div>
           </div>
           <div class="flex justify-end">
-            <.button class="create_button" phx-disable-with="Creating gist...">Create gist</.button>
+            <%= if @id == :new do %>
+            <.button class="create_button" phx-disable-with="Creating...">Create gist</.button>
+            <% else %>
+            <.button class="create_button" phx-disable-with="Updating...">Update gist</.button>
+            <% end %>
           </div>
         </div>
       </.form>
@@ -83,6 +87,14 @@ defmodule ElixirGistWeb.GistFormComponent do
 
   # SELECT * FROM gists;
   def handle_event("create", %{"gist" => params}, socket) do
+    if is_nil(params["id"]) do
+      create_gist(params, socket)
+    else
+      update_gist(params, socket)
+    end
+  end
+
+  defp create_gist(params, socket) do
     case Gists.create_gist(socket.assigns.current_scope, params) do
       {:ok, gist} ->
         socket = push_event(socket, "clear-textareas", %{})
@@ -99,6 +111,17 @@ defmodule ElixirGistWeb.GistFormComponent do
 
       {:error, %Ecto.Changeset{} = changeset} ->
         {:noreply, assign(socket, form: to_form(changeset))}
+    end
+  end
+
+  defp update_gist(params, socket) do
+    gist = Repo.get!(Gist, socket.assigns.id)
+    case Gists.update_gist(socket.assigns.current_scope, gist, params) do
+      {:ok, gist} ->
+        {:noreply, push_patch(socket, to: ~p"/gist?#{[id: gist.id]}")}
+      {:error, message} ->
+        socket = put_flash(socket, :error, message)
+        {:noreply, socket}
     end
   end
 end

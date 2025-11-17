@@ -29,8 +29,8 @@ import topbar from "../vendor/topbar"
 
 const csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content")
 
-function updateLineNumbers(value) {
-  const lineNumberText = document.querySelector("#line-numbers")
+function updateLineNumbers(value, element_id = "#line-numbers") {
+  const lineNumberText = document.querySelector(element_id)
   if (!lineNumberText) return
 
   const lines = value.split("\n")
@@ -41,7 +41,7 @@ function updateLineNumbers(value) {
 };
 
 let Hooks = {}
-Hooks.HighlightJS = {
+Hooks.Highlight = {
   mounted() {
     let name = this.el.getAttribute("data-name");
     let codeBlock = this.el.querySelector("pre code");
@@ -50,7 +50,7 @@ Hooks.HighlightJS = {
       codeBlock.classList.add(`language-${this.getSyntaxType(name)}`);
       trimmed = this.trimCodeBlock(codeBlock)
       hljs.highlightElement(trimmed);
-      updateLineNumbers(trimmed.textContent)
+      updateLineNumbers(trimmed.textContent, "#syntax-numbers")
     }
   },
   getSyntaxType(name) {
@@ -127,6 +127,19 @@ Hooks.CopyToClipboard = {
           console.error("Failed to copy text", err)
         })
       }      
+    })
+  },
+}
+
+Hooks.ToggleEdit = {
+  mounted() {
+    this.el.addEventListener("click", e => {
+      let edit = document.getElementById("edit-section");
+      let syntax = document.getElementById("syntax-section");
+      if (edit && syntax) {
+        edit.style.display = "block";
+        syntax.style.display = "none";
+      }
     })
   },
 }

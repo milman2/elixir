@@ -2,5 +2,9 @@
   <div class="em-gradient flex items-center justify-center bg-black">
     <h1 class="font-brand font-bold text-3xl text-white">Create a new Gist</h1>
   </div>
-  <.live_component module={ElixirGistWeb.GistFormComponent} id={:new} current_scope={@current_scope} />
+  <.live_component 
+    module={ElixirGistWeb.GistFormComponent} id={:new} 
+    current_scope={@current_scope} 
+    form={to_form(Gist.changeset(%Gist{}, %{}, @current_scope))}
+  />
 </Layouts.app>  

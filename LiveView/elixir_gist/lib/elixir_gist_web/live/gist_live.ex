@@ -3,6 +3,7 @@ defmodule ElixirGistWeb.GistLive do
   use Timex
 
   alias ElixirGist.Gists
+  alias ElixirGist.Gists.Gist
 
   def mount(%{"id" => id}, _session, socket) do
     gist = Gists.get_gist!(socket.assigns.current_scope, id)
