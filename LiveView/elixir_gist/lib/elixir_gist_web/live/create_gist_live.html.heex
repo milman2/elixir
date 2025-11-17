@@ -1,18 +1,25 @@
 ﻿<Layouts.app flash={@flash} current_scope={@current_scope}>
-  <div class="flex items-center justify-center">
-    <h1 class="font-brand font-bold text-3xl text-black">Create a new Gist</h1>
+  <div class="em-gradient flex items-center justify-center bg-black">
+    <h1 class="font-brand font-bold text-3xl text-white">Create a new Gist</h1>
   </div>
   <.form for={@form} phx-submit="create" phx-change="validate">
     <div class="justify center px-28 w-full space-y-4 mb-10">
-      <.input field={@form[:description]} placeholder="Gist Description..." autocomplete="off" phx-debounce="blur"/>
+      <.input 
+        field={@form[:description]} 
+        placeholder="Gist Description..." 
+        autocomplete="off" 
+        phx-debounce="blur"
+        class="bg-emDark-dark text-white border-white"
+      />
       <div>
-        <div class="flex p-2 items-center rounded-t-md border">
-          <div class="w-[300px] mb-2">
+        <div class="flex p-2 items-center bg-emDark rounded-t-md border border-white">
+          <div class="w-[300px] pl-2">
               <.input 
               field={@form[:name]} 
               placeholder="Filename including extension..." 
               autocomplete="off" 
               phx-debounce="blur"
+              class="bg-emDark text-emLavender-dark border-0 font-brand font-bold text-base"
               />
           </div>
         </div>
@@ -26,7 +33,7 @@
               phx-hook="UpdateLineNumbers"
               field={@form[:markup_text]} 
               type="textarea" 
-              class="text-area w-full rounded-b-md font-mono" 
+              class="text-area w-full rounded-br-md font-mono bg-emDark-dark text-white border-white" 
               placeholder="Insert code..." 
               spellcheck="false" 
               autocomplete="off"
@@ -37,7 +44,7 @@
         </div>
       </div>
       <div class="flex justify-end">
-        <.button phx-disable-with="Creating gist...">Create gist</.button>
+        <.button class="create_button" phx-disable-with="Creating gist...">Create gist</.button>
       </div>
     </div>
   </.form>

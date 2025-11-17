@@ -1,10 +1,13 @@
 defmodule ElixirGistWeb.GistLive do
   use ElixirGistWeb, :live_view
+  use Timex
 
   alias ElixirGist.Gists
 
   def mount(%{"id" => id}, _session, socket) do
     gist = Gists.get_gist!(socket.assigns.current_scope, id)
+    relative_time = Timex.format!(gist.updated_at, "{relative}", :relative)
+    gist = Map.put(gist, :relative, relative_time)
     {:ok, assign(socket, gist: gist)}
   end
 

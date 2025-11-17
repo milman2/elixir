@@ -176,7 +176,7 @@
   }
 
   .text-area {
-    @apply text-black text-xs border border-white h-[300px] resize-none;
+    @apply bg-emDark-dark text-white text-xs border border-white h-[300px] resize-none;
     border-top: none;
     border-left: none;
   }
