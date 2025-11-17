@@ -2,50 +2,5 @@
   <div class="em-gradient flex items-center justify-center bg-black">
     <h1 class="font-brand font-bold text-3xl text-white">Create a new Gist</h1>
   </div>
-  <.form for={@form} phx-submit="create" phx-change="validate">
-    <div class="justify center px-28 w-full space-y-4 mb-10">
-      <.input 
-        field={@form[:description]} 
-        placeholder="Gist Description..." 
-        autocomplete="off" 
-        phx-debounce="blur"
-        class="bg-emDark-dark text-white border-white"
-      />
-      <div>
-        <div class="flex p-2 items-center bg-emDark rounded-t-md border border-white">
-          <div class="w-[300px] pl-2">
-              <.input 
-              field={@form[:name]} 
-              placeholder="Filename including extension..." 
-              autocomplete="off" 
-              phx-debounce="blur"
-              class="bg-emDark text-emLavender-dark border-0 font-brand font-bold text-base"
-              />
-          </div>
-        </div>
-        <div id="gist-wrapper" class="flex w-full" phx-update="ignore">
-          <textarea id="line-numbers" class="line-numbers rounded-bl-md" readonly>
-          <%= "1\n" %>
-          </textarea>
-          <div class="flex-1">
-            <.input 
-              id="text-area"
-              phx-hook="UpdateLineNumbers"
-              field={@form[:markup_text]} 
-              type="textarea" 
-              class="text-area w-full rounded-br-md font-mono bg-emDark-dark text-white border-white" 
-              placeholder="Insert code..." 
-              spellcheck="false" 
-              autocomplete="off"
-              rows="20"
-              phx-debounce="blur"
-            />
-          </div>
-        </div>
-      </div>
-      <div class="flex justify-end">
-        <.button class="create_button" phx-disable-with="Creating gist...">Create gist</.button>
-      </div>
-    </div>
-  </.form>
+  <.live_component module={ElixirGistWeb.GistFormComponent} id={:new} current_scope={@current_scope} />
 </Layouts.app>  
