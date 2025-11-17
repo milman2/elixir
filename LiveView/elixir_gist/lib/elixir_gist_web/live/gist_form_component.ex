@@ -25,6 +25,7 @@ defmodule ElixirGistWeb.GistFormComponent do
   def render(assigns) do
     ~H"""
     <div>
+      <!-- phx-target={@myself} 이 form의 submit은 부모가 아닌 이 컴포넌트로 전달됨 -->
       <.form for={@form} phx-submit="create" phx-change="validate" phx-target={@myself}>
         <div class="justify center px-28 w-full space-y-4 mb-10">
           <.input
@@ -67,6 +68,7 @@ defmodule ElixirGistWeb.GistFormComponent do
             </div>
           </div>
           <div class="flex justify-end">
+            <!-- .button 컴포넌트는 form 내부에 있으면 자동으로 type="submit" 버튼이 된다. -->
             <%= if @id == :new do %>
             <.button class="create_button" phx-disable-with="Creating...">Create gist</.button>
             <% else %>
@@ -87,7 +89,7 @@ defmodule ElixirGistWeb.GistFormComponent do
 
   # SELECT * FROM gists;
   def handle_event("create", %{"gist" => params}, socket) do
-    if is_nil(params["id"]) do
+    if params["id"] == "new" do
       create_gist(params, socket)
     else
       update_gist(params, socket)
@@ -115,10 +117,10 @@ defmodule ElixirGistWeb.GistFormComponent do
   end
 
   defp update_gist(params, socket) do
-    gist = Repo.get!(Gist, socket.assigns.id)
+    gist = ElixirGist.Repo.get!(Gist, socket.assigns.id)
     case Gists.update_gist(socket.assigns.current_scope, gist, params) do
       {:ok, gist} ->
-        {:noreply, push_patch(socket, to: ~p"/gist?#{[id: gist.id]}")}
+        {:noreply, push_navigate(socket, to: ~p"/gist?#{[id: gist.id]}")}
       {:error, message} ->
         socket = put_flash(socket, :error, message)
         {:noreply, socket}
