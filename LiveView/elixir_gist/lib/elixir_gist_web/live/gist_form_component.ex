@@ -27,7 +27,6 @@ defmodule ElixirGistWeb.GistFormComponent do
     <div>
       <!-- phx-target={@myself} 이 form의 submit은 부모가 아닌 이 컴포넌트로 전달됨 -->
       <.form for={@form} phx-submit="create" phx-change="validate" phx-target={@myself}>
-        <!-- <.input type="hidden" field={@form[:id]} value={@id} /> -->
         <div class="justify center px-28 w-full space-y-4 mb-10">
           <.input
             field={@form[:description]}
@@ -52,7 +51,7 @@ defmodule ElixirGistWeb.GistFormComponent do
               <textarea id="line-numbers" class="line-numbers rounded-bl-md" readonly>
               <%= "1\n" %>
               </textarea>
-              <div class="flex-1">
+              <div class="flex-grow">
                 <.input
                   id="text-area"
                   phx-hook="UpdateLineNumbers"
@@ -90,7 +89,8 @@ defmodule ElixirGistWeb.GistFormComponent do
 
   # SELECT * FROM gists;
   def handle_event("create", %{"gist" => params}, socket) do
-    if params["id"] == "new" do
+    # socket.assigns.id를 사용 (hidden input 불필요)
+    if socket.assigns.id == :new do
       create_gist(params, socket)
     else
       update_gist(params, socket)
